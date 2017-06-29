@@ -1,13 +1,18 @@
-package com.emergya.sss3E.configuration;
+package com.emergya.sss3e.configuration;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.servlet.ServletContext;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -18,20 +23,37 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-import com.emergya.sss3E.commons.props.AppPropsValues;
+import com.emergya.sss3e.commons.props.AppPropsValues;
 
 /**
  * Class that provides the dispatcher servlet application for the Swagger Web MVC context.
+ * 
+ * For access to swagger, you use the follow URLs:
+ * 
+ *   Swagger UI  : http://localhost:8080/{context-app}/swagger-ui.html
+ *   Swagger Docs: http://localhost:8080/{context-app}/v2/api-docs
  * 
  * @author iiglesias
  *
  */
 @Configuration
+@EnableWebMvc
 @EnableSwagger2
-public class SwaggerConfig {
+public class SwaggerConfig extends WebMvcConfigurerAdapter {
+    
+    @Autowired
+    private ServletContext servletContext;
 
     @Autowired
     private AppPropsValues appPropsValues;
+    
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        
+        // Access to swagger ui
+                
+        registry.addResourceHandler("swagger-ui.html").addResourceLocations("classpath:/META-INF/resources/");
+    }
 
     /**
      * Active the configuration of Swagger through the Docket bean. More info in
@@ -70,7 +92,7 @@ public class SwaggerConfig {
                         appPropsValues.getSwaggerInfoContactName(), appPropsValues.getSwaggerInfoContactUrl(),
                         appPropsValues.getSwaggerInfoContactEmail()), appPropsValues.getSwaggerInfoLicense(),
                 appPropsValues.getSwaggerInfoLicenseURL(), new ArrayList<VendorExtension>()));
-
+        
         return docket;
     }
 }

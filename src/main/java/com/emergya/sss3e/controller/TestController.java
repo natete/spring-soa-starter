@@ -1,4 +1,4 @@
-package com.emergya.sss3E.controller;
+package com.emergya.sss3e.controller;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.emergya.sss3E.aop.AuditMethod;
-import com.emergya.sss3E.controller.handler.ExceptionsHandler;
-import com.emergya.sss3E.controller.response.ErrorResponse;
+import com.emergya.sss3e.aop.AuditMethod;
+import com.emergya.sss3e.controller.handler.ExceptionsHandler;
+import com.emergya.sss3e.controller.response.ErrorResponse;
 
 /**
  * Controller that contains test methods

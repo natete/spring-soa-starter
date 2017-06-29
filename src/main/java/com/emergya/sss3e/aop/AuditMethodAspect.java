@@ -1,4 +1,4 @@
-package com.emergya.sss3E.aop;
+package com.emergya.sss3e.aop;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
@@ -11,7 +11,7 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.stereotype.Component;
 
-import com.emergya.sss3E.aop.AuditMethod.Level;
+import com.emergya.sss3e.aop.AuditMethod.Level;
 
 /**
  * Aspect for annotation to auditate a method

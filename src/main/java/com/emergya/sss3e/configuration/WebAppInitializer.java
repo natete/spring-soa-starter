@@ -1,4 +1,4 @@
-package com.emergya.sss3E.configuration;
+package com.emergya.sss3e.configuration;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
@@ -35,7 +35,7 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
      */
     @Override
     protected String[] getServletMappings() {
-        return new String[] { "/rest/*" };
+        return new String[] { "/" };
     }
 
 }

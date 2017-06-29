@@ -1,11 +1,11 @@
-package com.emergya.sss3E.controller.handler;
+package com.emergya.sss3e.controller.handler;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import com.emergya.sss3E.controller.response.ErrorResponse;
+import com.emergya.sss3e.controller.response.ErrorResponse;
 
 /**
  * Exception handler raised from the controllers. Controllers that want to control exceptions through this handler

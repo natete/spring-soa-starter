@@ -1,4 +1,4 @@
-package com.emergya.sss3E.commons.props;
+package com.emergya.sss3e.commons.props;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;

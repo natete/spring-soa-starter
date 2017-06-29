@@ -1,4 +1,4 @@
-package com.emergya.sss3E.configuration;
+package com.emergya.sss3e.configuration;
 
 import java.util.ArrayList;
 import java.util.List;

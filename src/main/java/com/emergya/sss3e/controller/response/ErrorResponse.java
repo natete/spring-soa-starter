@@ -1,4 +1,4 @@
-package com.emergya.sss3E.controller.response;
+package com.emergya.sss3e.controller.response;
 
 import java.io.Serializable;
 

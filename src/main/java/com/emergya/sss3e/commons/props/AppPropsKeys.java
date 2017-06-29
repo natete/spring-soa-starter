@@ -1,4 +1,4 @@
-package com.emergya.sss3E.commons.props;
+package com.emergya.sss3e.commons.props;
 
 /**
  * Mapping keys in the property resource app.properties

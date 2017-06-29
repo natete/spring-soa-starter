@@ -1,4 +1,4 @@
-package com.emergya.sss3E.aop;
+package com.emergya.sss3e.aop;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
