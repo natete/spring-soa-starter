@@ -1,8 +1,5 @@
 package com.emergya.sss3e.configuration;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -11,11 +8,13 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Class that provides the dispatcher servlet application for the Rest Web MVC context.
- * 
- * @author iiglesias
  *
+ * @author iiglesias
  */
 @Configuration
 @EnableWebMvc
@@ -24,7 +23,7 @@ public class RestWebConfig {
 
     /**
      * Configure to plugin JSON as request and response in method handler
-     * 
+     *
      * @return
      */
     @Bean
@@ -32,7 +31,7 @@ public class RestWebConfig {
 
         RequestMappingHandlerAdapter handlerAdapter = new RequestMappingHandlerAdapter();
 
-        List<HttpMessageConverter<?>> messageConverters = new ArrayList<HttpMessageConverter<?>>();
+        List<HttpMessageConverter<?>> messageConverters = new ArrayList<>();
 
         messageConverters.add(mappingJackson2HttpMessageConverter());
 
@@ -43,7 +42,7 @@ public class RestWebConfig {
 
     /**
      * Configure bean to convert JSON to POJO and vice-versa
-     * 
+     *
      * @return
      */
     @Bean

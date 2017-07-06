@@ -7,9 +7,8 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
  * opposed to (or possibly in conjunction with) the traditional web.xml-based approach. This initializer will be
  * detected automatically by SpringServletContainerInitializer, which itself is bootstrapped automatically by any
  * Servlet 3.0 container.
- * 
- * @author iiglesias
  *
+ * @author iiglesias
  */
 public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 

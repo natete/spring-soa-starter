@@ -1,8 +1,6 @@
 package com.emergya.sss3e.aop;
 
-import java.lang.reflect.Method;
-import java.lang.reflect.Parameter;
-
+import com.emergya.sss3e.aop.AuditMethod.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -11,13 +9,13 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.stereotype.Component;
 
-import com.emergya.sss3e.aop.AuditMethod.Level;
+import java.lang.reflect.Method;
+import java.lang.reflect.Parameter;
 
 /**
- * Aspect for annotation to auditate a method
- * 
- * @author iiglesias
+ * Aspect for annotation to audit a method
  *
+ * @author iiglesias
  */
 @Component
 @Aspect
@@ -25,7 +23,7 @@ public class AuditMethodAspect {
 
     /**
      * Executes the audit of method around this
-     * 
+     *
      * @param call Joint point for the proceeding method
      * @return
      * @throws Throwable
@@ -37,7 +35,7 @@ public class AuditMethodAspect {
 
         MethodSignature signature = (MethodSignature) call.getSignature();
 
-        // Método sobre el que se ejecuta la anotación
+        // Method over which the annotation is executed
 
         Method method = signature.getMethod();
 

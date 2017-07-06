@@ -3,11 +3,10 @@ package com.emergya.sss3e.controller.response;
 import java.io.Serializable;
 
 /**
- * Response object for the rest service when an error has ocurred. Normally, this response is used in the handler
+ * Response object for the rest service when an error has occurred. Normally, this response is used in the handler
  * controller exception.
- * 
- * @author iiglesias
  *
+ * @author iiglesias
  */
 public class ErrorResponse implements Serializable {
 

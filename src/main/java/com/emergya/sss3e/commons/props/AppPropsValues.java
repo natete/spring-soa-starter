@@ -6,9 +6,8 @@ import org.springframework.stereotype.Component;
 /**
  * Values of the keys in the property resource app.properties. Return the property value associated with the given key,
  * or null if the key cannot be resolved.
- * 
- * @author iiglesias
  *
+ * @author iiglesias
  */
 @Component
 public class AppPropsValues {
