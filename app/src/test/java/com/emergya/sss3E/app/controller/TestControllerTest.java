@@ -71,6 +71,7 @@ public class TestControllerTest {
                                           .andDo(print())
                                           .andExpect(status().isInternalServerError())
                                           .andExpect(jsonPath("$.code").value("500"))
+                                          .andExpect(jsonPath("$.message").exists())
                                           .andReturn();
 
         Assert.assertEquals("application/json;charset=UTF-8", mvcResult.getResponse().getContentType());
