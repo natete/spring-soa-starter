@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>sss3E</artifactId>
+        <groupId>com.emergya</groupId>
+        <version>1.0.0</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>swagger</artifactId>
+    <packaging>jar</packaging>
+
+
+    <properties>
+
+        <!-- Library versions -->
+        <springfox.swagger2.version>2.7.0</springfox.swagger2.version>
+
+        <!--
+                Swagger: It is the world's largest framework of API developer tools for the OpenAPI Specification(OAS),
+                         enabling development across the entire API lifecycle, from design and documentation, to test
+                         and deployment.
+                -->
+        <swagger.info.title>${project.name}</swagger.info.title>
+        <swagger.info.description>${project.description}</swagger.info.description>
+        <swagger.info.version>${project.version}</swagger.info.version>
+        <swagger.info.termsOfServiceUrl></swagger.info.termsOfServiceUrl>
+        <swagger.info.contact.name>Emergya</swagger.info.contact.name>
+        <swagger.info.contact.url>https://www.emergya.com</swagger.info.contact.url>
+        <swagger.info.contact.email>info@emergya.com</swagger.info.contact.email>
+        <swagger.info.license></swagger.info.license>
+        <swagger.info.licenseUrl></swagger.info.licenseUrl>
+
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+        </dependency>
+
+        <!-- Swagger: version 2 by SpringFox -->
+
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>${springfox.swagger2.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+
+        <resources>
+
+            <!-- Filtering resource files for replace the variables that contain ${...} by the profile variable value -->
+
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>**</include>
+                </includes>
+            </resource>
+
+        </resources>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.5.1</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <showWarnings>true</showWarnings>
+                    <showDeprecation>true</showDeprecation>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.7</version>
+                <configuration>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+        </plugins>
+
+    </build>
+
+    <profiles>
+
+        <profile>
+
+            <!-- Local profile: It is the profile for the local environment -->
+
+            <id>local</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+
+            <dependencies>
+
+                <!-- Swagger: UI by SpringFox. Only imported when this profile is loaded-->
+                <dependency>
+                    <groupId>io.springfox</groupId>
+                    <artifactId>springfox-swagger-ui</artifactId>
+                    <version>${springfox.swagger2.version}</version>
+                </dependency>
+
+            </dependencies>
+
+        </profile>
+
+    </profiles>
+</project>

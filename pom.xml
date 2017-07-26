@@ -1,251 +1,65 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-  <modelVersion>4.0.0</modelVersion>
+    <groupId>com.emergya</groupId>
+    <artifactId>sss3E</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0.0</version>
 
-  <groupId>com.emergya</groupId>
-  <artifactId>sss3E</artifactId>
-  <packaging>war</packaging>
-  <version>1.0.0</version>
+    <modules>
+        <module>swagger</module>
+        <module>app</module>
+        <module>persistence</module>
+    </modules>
 
-  <name>Spring SOA Starter</name>
-  <description>Spring SOA base project</description>
+    <properties>
 
-  <organization>
-    <name>Emergya</name>
-    <url>https://www.emergya.com</url>
-  </organization>
-  
-  <properties>
+        <java.version>1.8</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-    <!-- Project configuration -->
-    
-    <java.version>1.8</java.version>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    
-    <!-- Library versions -->
-    
-    <spring.framework.version>4.3.9.RELEASE</spring.framework.version>
-    <spring.data.commons.version>1.13.4.RELEASE</spring.data.commons.version>
-    <spring.data.jpa.version>1.11.4.RELEASE</spring.data.jpa.version>
-    <log4j2.version>2.8.2</log4j2.version>
-    <jackson.databind.version>2.8.9</jackson.databind.version>
-    <aspectj.version>1.8.10</aspectj.version>
-    <springfox.swagger2.version>2.7.0</springfox.swagger2.version>
-    <hibernate.version>5.2.10.Final</hibernate.version>
-    <mysql-connector-java.version>5.1.42</mysql-connector-java.version>
+        <!-- Library versions -->
+        <spring.framework.version>4.3.9.RELEASE</spring.framework.version>
+        <jackson.databind.version>2.8.9</jackson.databind.version>
+        <spring.data.commons.version>1.13.4.RELEASE</spring.data.commons.version>
+    </properties>
 
-  </properties>
-  
-  <build>
-  
-    <resources>
-    
-      <!-- Filtering resource files for replace the variables that contain ${...} by the profile variable value -->
-    
-      <resource>
-        <directory>src/main/resources</directory>
-        <filtering>true</filtering>
-        <includes>
-          <include>**</include>
-        </includes>
-      </resource>
-      
-    </resources>
-  
-    <plugins>
-      <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-compiler-plugin</artifactId>
-          <version>2.5.1</version>
-          <configuration>
-            <source>${java.version}</source>
-            <target>${java.version}</target>
-            <showWarnings>true</showWarnings>
-            <showDeprecation>true</showDeprecation>
-          </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-resources-plugin</artifactId>
-        <version>2.7</version>
-        <configuration>
-          <encoding>${project.build.sourceEncoding}</encoding>
-        </configuration>
-      </plugin>
-    </plugins>
-  
-  </build>
+    <dependencyManagement>
+        <dependencies>
+            <!-- Spring Framework -->
 
-  <dependencies>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context</artifactId>
+                <version>${spring.framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-webmvc</artifactId>
+                <version>${spring.framework.version}</version>
+            </dependency>
 
-    <!-- Spring Framework -->
+            <!-- JRE Provided libraries -->
 
-    <dependency>
-  	  <groupId>org.springframework</groupId>
-  	  <artifactId>spring-context</artifactId>
-  	  <version>${spring.framework.version}</version>
-    </dependency>
-    <dependency>
-  	  <groupId>org.springframework</groupId>
-  	  <artifactId>spring-webmvc</artifactId>
-  	  <version>${spring.framework.version}</version>
-  	</dependency>
-  	<dependency>
-  	  <groupId>org.springframework</groupId>
-  	  <artifactId>spring-tx</artifactId>
-  	  <version>${spring.framework.version}</version>
-    </dependency>
-    <dependency>
-  	  <groupId>org.springframework</groupId>
-  	  <artifactId>spring-orm</artifactId>
-  	  <version>${spring.framework.version}</version>
-    </dependency>
-    
-    <!-- Spring Data -->
-    
-    <dependency>
-      <groupId>org.springframework.data</groupId>
-      <artifactId>spring-data-commons</artifactId>
-      <version>${spring.data.commons.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.data</groupId>
-      <artifactId>spring-data-jpa</artifactId>
-      <version>${spring.data.jpa.version}</version>
-    </dependency>
-  	
-  	<!-- Log4j -->
-  	
-  	<dependency>
-        <groupId>org.apache.logging.log4j</groupId>
-        <artifactId>log4j-core</artifactId>
-        <version>${log4j2.version}</version>
-    </dependency>
-    <dependency>
-        <groupId>org.apache.logging.log4j</groupId>
-        <artifactId>log4j-jcl</artifactId>
-        <version>${log4j2.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.logging.log4j</groupId>
-      <artifactId>log4j-slf4j-impl</artifactId>
-      <version>${log4j2.version}</version>
-    </dependency>
-  	
-    <!-- Jackson -->
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>servlet-api</artifactId>
+                <version>2.5</version>
+                <scope>provided</scope>
+            </dependency>
 
-    <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-databind</artifactId>
-      <version>${jackson.databind.version}</version>
-    </dependency>
-    
-    <!-- Aspect Java -->
+            <!-- Jackson -->
 
-    <dependency>
-      <groupId>org.aspectj</groupId>
-      <artifactId>aspectjrt</artifactId>
-      <version>${aspectj.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.aspectj</groupId>
-      <artifactId>aspectjtools</artifactId>
-      <version>${aspectj.version}</version>
-    </dependency>
-    
-    <!-- Swagger: version 2 by SpringFox -->
-    
-    <dependency>
-      <groupId>io.springfox</groupId>
-      <artifactId>springfox-swagger2</artifactId>
-      <version>${springfox.swagger2.version}</version>
-    </dependency>
-    
-    <!-- Hibernate -->
-    
-    <dependency>
-      <groupId>org.hibernate</groupId>
-      <artifactId>hibernate-core</artifactId>
-      <version>${hibernate.version}</version>
-    </dependency>
-    
-    <!-- MySQL Connector -->
-    
-    <dependency>
-      <groupId>mysql</groupId>
-      <artifactId>mysql-connector-java</artifactId>
-      <version>${mysql-connector-java.version}</version>
-    </dependency>
-  	
-    <!-- JRE Provided libraries -->
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${jackson.databind.version}</version>
+            </dependency>
 
-    <dependency>
-      <groupId>javax.servlet</groupId>
-      <artifactId>servlet-api</artifactId>
-      <version>2.5</version>
-      <scope>provided</scope>
-    </dependency>  	
+        </dependencies>
+    </dependencyManagement>
 
-  </dependencies>
-  
-  <profiles>
-  
-    <profile>
-      
-      <!-- Local profile: It is the profile for the local environment -->
-      
-      <id>local</id>
-      <activation>
-        <activeByDefault>true</activeByDefault>
-      </activation>
-      
-      <properties>
-      
-        <!-- 
-        JDBC Data Source: Configuration of the standard connection JDBC DataSource interface.
-        -->
-        <jdbc.url>jdbc:mysql://localhost:3306/sss3E?createDatabaseIfNotExist=true</jdbc.url>
-        <jdbc.username>sss3E</jdbc.username>
-        <jdbc.password>sss3E</jdbc.password>
-        
-        <!-- 
-        Hibernate properties: https://docs.jboss.org/hibernate/orm/5.0/manual/en-US/html/ch03.html#configuration-optional
-        -->
-        <hibernate.show_sql>true</hibernate.show_sql>
-      
-        <!-- 
-        Swagger: It is the world's largest framework of API developer tools for the OpenAPI Specification(OAS), 
-                 enabling development across the entire API lifecycle, from design and documentation, to test 
-                 and deployment. 
-        -->        
-        <swagger.info.title>${project.name}</swagger.info.title>
-        <swagger.info.description>${project.description}</swagger.info.description>
-        <swagger.info.version>${project.version}</swagger.info.version>
-        <swagger.info.termsOfServiceUrl></swagger.info.termsOfServiceUrl>
-        <swagger.info.contact.name>Emergya</swagger.info.contact.name>
-        <swagger.info.contact.url>https://www.emergya.com</swagger.info.contact.url>
-        <swagger.info.contact.email>info@emergya.com</swagger.info.contact.email>
-        <swagger.info.license></swagger.info.license>
-        <swagger.info.licenseUrl></swagger.info.licenseUrl>
-        
-      </properties>
-      
-      <dependencies>
-      
-        <!-- Swagger: UI by SpringFox. Only imported when this profile is loaded -->
-      
-        <dependency>
-          <groupId>io.springfox</groupId>
-          <artifactId>springfox-swagger-ui</artifactId>
-          <version>${springfox.swagger2.version}</version>
-        </dependency>
-        
-      </dependencies>
-      
-    </profile>
-    
-  </profiles>
-  
 </project>
