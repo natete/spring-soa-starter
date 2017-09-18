@@ -1,8 +1,12 @@
 package com.emergya.sss3E.app.configuration;
 
-import org.springframework.context.annotation.ComponentScan;
+import com.emergya.sss3E.persistence.configuration.JdbcConfig;
+import com.emergya.sss3E.security.config.RedisConfig;
+import com.emergya.sss3E.security.config.WebSecurityConfig;
+import com.emergya.sss3E.swagger.configuration.SwaggerConfig;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.PropertySource;
 
 /**
@@ -13,7 +17,7 @@ import org.springframework.context.annotation.PropertySource;
 @Configuration
 @EnableAspectJAutoProxy
 @PropertySource(value = { "classpath:swagger.properties" })
-@ComponentScan(value = { "com.emergya.sss3E.app" })
+@Import({ WebSecurityConfig.class, RedisConfig.class, JdbcConfig.class, SwaggerConfig.class })
 public class AppConfig {
 
 }

@@ -12,6 +12,8 @@
     <modules>
         <module>swagger</module>
         <module>app</module>
+        <module>security</module>
+        <module>persistence</module>
     </modules>
 
     <properties>

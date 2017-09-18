@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>sss3E</artifactId>
+        <groupId>com.emergya</groupId>
+        <version>1.0.0</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>persistence</artifactId>
+    <packaging>jar</packaging>
+
+    <properties>
+
+        <!-- Library versions -->
+        <spring.data.commons.version>1.13.4.RELEASE</spring.data.commons.version>
+        <spring.data.jpa.version>1.11.7.RELEASE</spring.data.jpa.version>
+        <hibernate.version>5.2.10.Final</hibernate.version>
+        <mysql-connector-java.version>5.1.42</mysql-connector-java.version>
+        <lombok.version>1.16.18</lombok.version>
+        <javax.validation-api.version>1.0.0.GA</javax.validation-api.version>
+        <querydsl.version>4.1.4</querydsl.version>
+
+        <!-- JDBC Data Source: Configuration of the standard connection JDBC DataSource interface. -->
+        <jdbc.url>jdbc:mysql://localhost:3306/sss3E?createDatabaseIfNotExist=true</jdbc.url>
+        <jdbc.username>root</jdbc.username>
+        <jdbc.password>root</jdbc.password>
+
+        <!-- Hibernate properties: https://docs.jboss.org/hibernate/orm/5.0/manual/en-US/html/ch03.html#configuration-optional -->
+        <hibernate.show_sql>true</hibernate.show_sql>
+
+    </properties>
+
+    <dependencies>
+
+        <!-- Spring Data -->
+
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-commons</artifactId>
+            <version>${spring.data.commons.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-jpa</artifactId>
+            <version>${spring.data.jpa.version}</version>
+        </dependency>
+
+        <!-- Hibernate -->
+
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>${hibernate.version}</version>
+        </dependency>
+
+        <!-- MySQL Connector -->
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql-connector-java.version}</version>
+        </dependency>
+
+        <!-- Lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+            <version>${javax.validation-api.version}</version>
+        </dependency>
+
+        <!-- Querydsl -->
+        <dependency>
+            <groupId>com.querydsl</groupId>
+            <artifactId>querydsl-apt</artifactId>
+            <version>${querydsl.version}</version>
+            <classifier>jpa</classifier>
+        </dependency>
+        <dependency>
+            <groupId>com.querydsl</groupId>
+            <artifactId>querydsl-jpa</artifactId>
+            <version>${querydsl.version}</version>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.5.1</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <showWarnings>true</showWarnings>
+                    <showDeprecation>true</showDeprecation>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.7</version>
+                <configuration>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.mysema.maven</groupId>
+                <artifactId>apt-maven-plugin</artifactId>
+                <version>1.1.3</version>
+                <executions>
+                    <execution>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>process</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>target/generated-sources/java</outputDirectory>
+                            <processor>com.mysema.query.apt.jpa.JPAAnnotationProcessor</processor>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>**</include>
+                </includes>
+            </resource>
+        </resources>
+
+    </build>
+
+    <profiles>
+
+        <profile>
+
+            <!-- Local profile: It is the profile for the local environment -->
+            <id>local</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+
+            <properties>
+
+                <!-- JDBC Data Source: Configuration of the standard connection JDBC DataSource interface. -->
+                <jdbc.url>jdbc:mysql://localhost:3307/sss3E?createDatabaseIfNotExist=true</jdbc.url>
+                <jdbc.username>root</jdbc.username>
+                <jdbc.password>root</jdbc.password>
+
+                <!-- Hibernate properties: https://docs.jboss.org/hibernate/orm/5.0/manual/en-US/html/ch03.html#configuration-optional -->
+                <hibernate.show_sql>true</hibernate.show_sql>
+            </properties>
+
+        </profile>
+
+        <profile>
+
+            <!-- Local profile: It is the profile for the local environment -->
+            <id>ci</id>
+
+            <properties>
+
+                <!-- JDBC Data Source: Configuration of the standard connection JDBC DataSource interface. -->
+                <jdbc.url>jdbc:mysql://localhost:3306/sss3E?createDatabaseIfNotExist=true</jdbc.url>
+                <jdbc.username>root</jdbc.username>
+                <jdbc.password>z%xzkAnN4Q8A*%h2</jdbc.password>
+
+                <!-- Hibernate properties: https://docs.jboss.org/hibernate/orm/5.0/manual/en-US/html/ch03.html#configuration-optional -->
+                <hibernate.show_sql>true</hibernate.show_sql>
+            </properties>
+
+        </profile>
+
+    </profiles>
+
+</project>
